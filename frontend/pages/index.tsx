@@ -1,7 +1,9 @@
+import Sidebar from "../components/Sidebar";
+
 export default function Dashboard() {
     return (
-        <h1 className="font-semibold text-3xl">
-            DrinkDispenser Dashboard
-        </h1>
+        <div className="m-10 rounded-[20px] border-[1px] border-[#C3C3C3] bg-[#EEEEEE] bg-opacity-10 h-full">
+            <Sidebar />
+        </div>
     )
 }
