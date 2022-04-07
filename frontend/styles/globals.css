@@ -12,7 +12,29 @@ html, body, #__next {
     height: 97%;
 }
 
-
 body {
     background-color: black;
+}
+
+.sidebar-button,
+.sidebar-button-inactive {
+    font-weight: 500;
+}
+
+.sidebar-button,
+.sidebar-button .button-icon {
+    color: white;
+    fill: white;
+}
+
+.sidebar-button-inactive,
+.sidebar-button-inactive .button-icon {
+    color: rgb(255 255 255 / 0.5);
+    fill: rgb(255 255 255 / 0.5);
+}
+
+.sidebar-button-inactive:hover,
+.sidebar-button-inactive:hover .button-icon {
+    color: white;
+    fill: white;
 }
