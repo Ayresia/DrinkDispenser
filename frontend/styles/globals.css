@@ -8,10 +8,10 @@
     font-family: 'Inter', sans-serif;
 }
 
-
 body {
     background: url('/images/bg.svg');
     background-size: cover;
+    backdrop-filter: blur(100px);
 }
 
 html, body, #__next {
