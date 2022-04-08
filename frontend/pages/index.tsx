@@ -8,7 +8,7 @@ export default function Dashboard() {
             <Sidebar />
             <main className="flex flex-col gap-[20px] p-7 sm:p-10 text-white overflow-x-hidden w-full">
                 <p className="text-4xl font-bold">Dashboard</p>
-                <div className="flex gap-[25px] rounded-[20px] border-[1px] border-[#C3C3C3] bg-[#000000] bg-opacity-[12%] p-5 overflow-x-scroll">
+                <div className="flex gap-[25px] rounded-[20px] border-[1px] border-[#C3C3C3] bg-[#000000] bg-opacity-[12%] p-3 sm:p-6 overflow-x-scroll">
                     <OverviewCard title="Total Ltrs Dispensed" value="3L" />
                     <OverviewCard title="Most Popular" image="coca-cola" />
                     <OverviewCard title="Drinks Dispensed" value="200" />
@@ -20,6 +20,12 @@ export default function Dashboard() {
                     <ChartEntry name="Kinnie" value={67} />
                     <ChartEntry name="Water" value={100} />
                     <ChartEntry name="7-Up" value={54} />
+                </div>
+                <p className="text-4xl font-bold">Active Drinks</p>
+                <div className="flex gap-6 rounded-[20px] border-[1px] border-[#C3C3C3] bg-[#000000] bg-opacity-[12%] p-3 sm:p-6 overflow-x-scroll">
+                    <OverviewCard image="coca-cola" />
+                    <OverviewCard image="coca-cola" />
+                    <OverviewCard image="coca-cola" />
                 </div>
             </main>
         </div>
