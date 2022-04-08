@@ -30,7 +30,8 @@ export default function DrinkCard(props: DrinkCardProps) {
             bg-opacity-20
             p-3
             min-h-[120px]
-            min-w-[300px]
+            min-w-full
+            lg:min-w-[342px]
             relative
         ">
             { props.portNumber !== null &&
