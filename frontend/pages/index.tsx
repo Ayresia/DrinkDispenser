@@ -1,3 +1,4 @@
+import ChartEntry from "../components/ChartEntry";
 import OverviewCard from "../components/OverviewCard";
 import Sidebar from "../components/Sidebar";
 
@@ -11,6 +12,14 @@ export default function Dashboard() {
                     <OverviewCard title="Total Ltrs Dispensed" value="3L" />
                     <OverviewCard title="Most Popular" image="coca-cola" />
                     <OverviewCard title="Drinks Dispensed" value="200" />
+                </div>
+                <p className="text-4xl font-bold">Drinks Dispensed</p>
+                <div className="flex flex-col gap-6 rounded-[20px] border-[1px] border-[#C3C3C3] bg-[#000000] bg-opacity-[12%] p-6 overflow-scroll">
+                    <ChartEntry name="Coca-Cola" value={48} />
+                    <ChartEntry name="Sprite" value={27} />
+                    <ChartEntry name="Kinnie" value={67} />
+                    <ChartEntry name="Water" value={100} />
+                    <ChartEntry name="7-Up" value={54} />
                 </div>
             </main>
         </div>
