@@ -1,5 +1,5 @@
 import ChartEntry from "../components/ChartEntry";
-import OverviewCard from "../components/OverviewCard";
+import Card from "../components/Card";
 import Sidebar from "../components/Sidebar";
 
 export default function Dashboard() {
@@ -9,9 +9,9 @@ export default function Dashboard() {
             <main className="flex flex-col gap-[20px] p-7 sm:p-10 text-white overflow-x-hidden w-full">
                 <p className="text-4xl font-bold">Dashboard</p>
                 <div className="flex gap-[25px] rounded-[20px] border-[1px] border-[#C3C3C3] bg-[#000000] bg-opacity-[12%] p-5 overflow-x-scroll">
-                    <OverviewCard title="Total Ltrs Dispensed" value="3L" />
-                    <OverviewCard title="Most Popular" image="coca-cola" />
-                    <OverviewCard title="Drinks Dispensed" value="200" />
+                    <Card title="Total Ltrs Dispensed" value="3L" />
+                    <Card title="Most Popular" image="coca-cola" />
+                    <Card title="Drinks Dispensed" value="200" />
                 </div>
                 <p className="text-4xl font-bold">Drinks Dispensed</p>
                 <div className="flex flex-col gap-6 rounded-[20px] border-[1px] border-[#C3C3C3] bg-[#000000] bg-opacity-[12%] p-5 overflow-scroll">
@@ -23,9 +23,9 @@ export default function Dashboard() {
                 </div>
                 <p className="text-4xl font-bold">Active Drinks</p>
                 <div className="flex gap-6 rounded-[20px] border-[1px] border-[#C3C3C3] bg-[#000000] bg-opacity-[12%] p-5 overflow-x-scroll">
-                    <OverviewCard image="coca-cola" />
-                    <OverviewCard image="coca-cola" />
-                    <OverviewCard image="coca-cola" />
+                    <Card image="coca-cola" />
+                    <Card image="coca-cola" />
+                    <Card image="coca-cola" />
                 </div>
             </main>
         </div>

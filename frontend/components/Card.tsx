@@ -1,10 +1,10 @@
-export interface OverviewCard {
+export interface CardProps {
     title?: string,
     image?: string
     value?: string 
 }
 
-export default function OverviewCard(props: OverviewCard) {
+export default function Card(props: CardProps) {
     return (
         <div className="
             flex
