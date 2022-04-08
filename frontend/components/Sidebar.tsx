@@ -12,11 +12,12 @@ export default function Sidebar() {
     }, [])
 
     return (
-        <aside className="flex flex-col w-fit gap-10 border-r-2 border-r-white border-opacity-[11%] p-10 h-full">
+        <aside className="hidden lg:flex flex-col w-fit gap-10 border-r-2 border-r-white border-opacity-[11%] p-10 h-full">
             <img 
                 src="images/logo.svg"
                 alt="Drink Dispenser Logo"
-                className="h-16"
+                height={200}
+                width={200}
             />
             <SidebarButton name="Dashboard" logo={DashboardLogo} page={page} href="/" />
             <SidebarButton name="Drinks" logo={DrinksLogo} page={page} href="/drinks" />

@@ -8,12 +8,20 @@
     font-family: 'Inter', sans-serif;
 }
 
-html, body, #__next {
-    height: 97%;
-}
 
 body {
-    background-color: black;
+    background: url('/images/bg.svg');
+    background-size: cover;
+}
+
+html, body, #__next {
+    height: calc(100% - 1rem);
+}
+
+@media (min-width: 640px) {
+    html, body, #__next {
+        height: calc(100% - 1.8rem);
+    }
 }
 
 .sidebar-button,
@@ -38,3 +46,13 @@ body {
     color: white;
     fill: white;
 }
+
+div::-webkit-scrollbar {
+  display: none;
+}
+
+div {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
