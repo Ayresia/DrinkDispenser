@@ -34,10 +34,10 @@ export default function DrinkCard(props: DrinkCardProps) {
             lg:min-w-[342px]
             relative
         ">
-            { props.portNumber !== null &&
+            { props.portNumber != null &&
                 <img 
                     src={`./images/port-number-${props.portNumber}.svg`}
-                    className="absolute top-2 left-2 max-h-[20px]"
+                    className="absolute top-4 left-4 max-h-[20px]"
                     alt={`Port Number ${props.portNumber}`}
                 />
             }
