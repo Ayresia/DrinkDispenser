@@ -19,13 +19,11 @@ export default function OverviewCard(props: OverviewCard) {
             bg-white
             bg-opacity-20
             p-3
-            sm:p-6
-            h-[85px]
-            sm:h-[100px]
-            w-[225px]
+            min-h-[85px]
+            min-w-[225px]
         ">
             { props.title && <p className="font-semibold lg:text-lg">{props.title}</p> }
-            { props.image && <img src={`./images/${props.image}.svg`} className="min-w-[80px]" /> }
+            { props.image && <img src={`./images/${props.image}.svg`} className="min-h-[30px]" /> }
             { props.value && <p className="font-extrabold text-xl lg:text-3xl">{props.value}</p> }
         </div>
     );
