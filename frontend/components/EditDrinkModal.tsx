@@ -36,7 +36,7 @@ export default function EditDrinkModal(props: EditDrinkModalProps) {
     }, [props.modalState])
 
     return (
-        <div className="w-screen h-screen fixed top-0 left-0 flex justify-center items-center">
+        <div className="w-full h-full fixed top-0 left-0 flex justify-center items-center">
             <EditDrinkCard elemRef={modalRef} {...props} />
         </div>
     );
