@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export interface DropdownProps {
     name: string
@@ -8,13 +8,32 @@ export interface DropdownProps {
 
 export default function Dropdown(props: DropdownProps) {
     const [open, setOpen] = useState(false)
+    const selectionRef = useRef<HTMLDivElement>(null)
+    const buttonRef = useRef<HTMLButtonElement>(null)
     const onButtonClick = () => setOpen(!open)
+
+    useEffect(() => {
+        if (!open) return
+
+        const clickEvent = (event: MouseEvent) => {
+            if (selectionRef.current?.contains(event.target as Node)) return
+            if (buttonRef.current?.contains(event.target as Node)) return
+
+            setOpen(false)
+        }
+
+        window.addEventListener("click", clickEvent)
+
+        return () => {
+            window.removeEventListener("click", clickEvent)
+        }
+    }, [open])
 
     return (
         <div className="flex gap-5 w-fit">
                 <label className="text-white font-semibold relative top-[2px]">{props.name}</label>
                 <div className="flex flex-col gap-2">
-                    <button onClick={onButtonClick} className="flex items-center gap-[10px] border-[1px] border-[#C3C3C3] rounded-[10px] py-[3px] px-[15px] bg-[#FFFFFF] bg-opacity-20">
+                    <button ref={buttonRef} onClick={onButtonClick} className="flex items-center gap-[10px] border-[1px] border-[#C3C3C3] rounded-[10px] py-[3px] px-[15px] bg-[#FFFFFF] bg-opacity-20">
                         <p className="font-semibold text-white text-sm">{props.defaultValue}</p>
                         <img
                             src="./images/dropdown.svg"
@@ -23,7 +42,7 @@ export default function Dropdown(props: DropdownProps) {
                         />
                     </button>
                     { open &&
-                        <div className="flex flex-col gap-[10px] text-sm text-white border-[1px] border-[#C3C3C3] rounded-[10px] py-[3px] px-[15px] bg-[#FFFFFF] bg-opacity-20">
+                        <div ref={selectionRef} className="flex flex-col fixed translate-x-[40px] translate-y-[40px] gap-[10px] text-sm text-white border-[1px] border-[#C3C3C3] rounded-[10px] py-[3px] px-[15px] bg-[#FFFFFF] bg-opacity-20">
                             { 
                                 props.options.map((option) => {
                                     return <button className="w-full text-left font-semibold">{option}</button>
