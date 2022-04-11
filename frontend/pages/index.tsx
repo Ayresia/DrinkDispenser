@@ -1,11 +1,10 @@
 import ChartEntry from "../components/ChartEntry";
 import Card from "../components/Card";
-import Sidebar from "../components/Sidebar";
+import MainLayout from "../components/MainLayout";
 
 export default function Dashboard() {
     return (
-        <div className="flex h-full m-5 sm:m-10 rounded-[20px] border-[1px] border-[#C3C3C3] border-opacity-50 bg-[#EEEEEE] bg-opacity-10 overflow-x-hidden">
-            <Sidebar />
+        <MainLayout>
             <main className="flex flex-col gap-[20px] p-7 sm:p-10 text-white overflow-x-hidden w-full">
                 <p className="text-4xl font-bold">Dashboard</p>
                 <div className="flex min-h-[127px] gap-[25px] rounded-[32px] border-[1px] border-[#C3C3C3] border-opacity-50 bg-[#000000] bg-opacity-[12%] p-5 overflow-x-scroll shadow-[0_12px_45px_rgba(0,0,0,0.1)]">
@@ -28,6 +27,6 @@ export default function Dashboard() {
                     <Card image="coca-cola" />
                 </div>
             </main>
-        </div>
+        </MainLayout>
     )
 }

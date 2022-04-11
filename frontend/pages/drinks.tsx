@@ -2,7 +2,7 @@ import { useState } from "react";
 import AddDrinkButton from "../components/AddDrinkButton";
 import DrinkCard, { DrinkName } from "../components/DrinkCard";
 import EditDrinkModal from "../components/EditDrinkModal";
-import Sidebar from "../components/Sidebar";
+import MainLayout from "../components/MainLayout";
 
 export default function Drinks() {
     let drinks = [
@@ -20,20 +20,7 @@ export default function Drinks() {
 
     return (
         <>
-            <div className={`
-                flex
-                h-full
-                rounded-[20px]
-                border-[1px]
-                border-[#C3C3C3]
-                border-opacity-50
-                bg-[#EEEEEE]
-                bg-opacity-10
-                m-5
-                sm:m-10
-                ${openModal && "blur-md"}`
-            }>
-                <Sidebar />
+            <MainLayout className={openModal ? "blur-md" : ""}>
                 <main className="flex flex-col gap-[30px] p-7 sm:p-10 text-white overflow-x-hidden w-full">
                     <p className="text-4xl font-bold">Drinks</p>
                     <AddDrinkButton />
@@ -48,7 +35,7 @@ export default function Drinks() {
                         }
                     </div>
                 </main>
-            </div>
+            </MainLayout>
             { openModal &&
                 <EditDrinkModal 
                     name={drinks[0].type}
