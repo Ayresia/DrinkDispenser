@@ -1,5 +1,5 @@
 export interface SidebarButtonProps {
-    name: string,
+    name?: string,
     href: string,
     page: string,
     logo: any,

@@ -3,6 +3,7 @@ import AddDrinkButton from "../components/AddDrinkButton";
 import DrinkCard, { DrinkName } from "../components/DrinkCard";
 import EditDrinkModal from "../components/EditDrinkModal";
 import MainLayout from "../components/MainLayout";
+import MobileNavbar from "../components/MobileNavbar";
 
 export default function Drinks() {
     let drinks = [
@@ -34,6 +35,7 @@ export default function Drinks() {
                             })
                         }
                     </div>
+                    <MobileNavbar />
                 </main>
             </MainLayout>
             { openModal &&

@@ -1,6 +1,7 @@
 import ChartEntry from "../components/ChartEntry";
 import Card from "../components/Card";
 import MainLayout from "../components/MainLayout";
+import MobileNavbar from "../components/MobileNavbar";
 
 export default function Dashboard() {
     return (
@@ -26,6 +27,7 @@ export default function Dashboard() {
                     <Card image="coca-cola" />
                     <Card image="coca-cola" />
                 </div>
+                <MobileNavbar />
             </main>
         </MainLayout>
     )

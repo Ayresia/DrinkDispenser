@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CardButton from "../components/CardButton";
 import MainLayout from "../components/MainLayout";
+import MobileNavbar from "../components/MobileNavbar";
 import SettingsInput from "../components/SettingsInput";
 
 export enum NotificationType {
@@ -18,7 +19,7 @@ export default function Settings() {
                 <p className="text-4xl font-bold">Settings</p>
                 <div>
                     <p className="text-2xl font-bold pb-5">Notifications</p>
-                    <div className="flex gap-5 min-h-[127px] overflow-x-scroll">
+                    <div className="flex flex-col lg:flex-row gap-5 min-h-[127px] overflow-x-scroll">
                         <CardButton 
                             title="Notifications & Email"
                             image="noti_email_icon"
@@ -51,6 +52,7 @@ export default function Settings() {
                         description="Receive near real-time email notifications, including day-to-day analytics and whenever a drink has run out of liquid."
                     />
                 }
+                <MobileNavbar />
             </main>
         </MainLayout>
     )
