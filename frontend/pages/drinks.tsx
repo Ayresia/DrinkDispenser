@@ -11,8 +11,7 @@ export default function Drinks() {
         { type: DrinkName.CocaCola, portNumber: 1 },
         { type: DrinkName.Sprite, portNumber: 2 },
         { type: DrinkName.Kinnie, portNumber: 3 },
-        { type: DrinkName.Sprite, portNumber: null },
-        { type: DrinkName.Kinnie, portNumber: null },
+        { type: DrinkName.Fanta, portNumber: null },
         { type: DrinkName.MountainDew, portNumber: null },
         { type: DrinkName.SevenUp, portNumber: null },
         { type: DrinkName.Pepsi, portNumber: null },
@@ -35,6 +34,7 @@ export default function Drinks() {
                                 return <DrinkCard 
                                     name={drink.type} 
                                     portNumber={drink.portNumber}
+                                    key={drink.type}
                                 />
                             })
                         }

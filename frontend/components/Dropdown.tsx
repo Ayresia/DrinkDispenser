@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Image from 'next/image';
 
 export interface DropdownProps {
     name: string
@@ -35,17 +36,22 @@ export default function Dropdown(props: DropdownProps) {
                 <div className="flex flex-col gap-2">
                     <button ref={buttonRef} onClick={onButtonClick} className="flex items-center gap-[10px] border-[1px] border-[#C3C3C3] rounded-[10px] py-[3px] px-[15px] bg-[#FFFFFF] bg-opacity-20">
                         <p className="font-semibold text-white text-sm">{props.defaultValue}</p>
-                        <img
-                            src="./images/dropdown.svg"
-                            className=""
-                            alt="Dropdown Icon"
-                        />
+                        <div className="relative h-[24px] w-[25px]">
+                            <Image
+                                src="/images/dropdown.svg"
+                                layout="fill"
+                                objectFit="scale-down"
+                                alt="Dropdown Icon"
+                            />
+                        </div>
                     </button>
                     { open &&
                         <div ref={selectionRef} className="flex flex-col gap-[10px] text-sm text-white border-[1px] border-[#C3C3C3] rounded-[10px] py-[3px] px-[15px] bg-[#FFFFFF] bg-opacity-20">
                             { 
                                 props.options.map((option) => {
-                                    return <button className="w-full text-left font-semibold">{option}</button>
+                                    return <button key={option} className="w-full text-left font-semibold">
+                                        {option}
+                                    </button>
                                 })
                             }
                         </div>

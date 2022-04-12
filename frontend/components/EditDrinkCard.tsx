@@ -1,10 +1,11 @@
 import Button, { ButtonVariant } from "./Button";
 import { DrinkName } from "./DrinkCard";
 import Dropdown from "./Dropdown";
+import Image from "next/image";
 
 export interface EditDrinkCardProps {
     name: DrinkName,
-    portNumber: 1 | 2 | 3 | null,
+    portNumber: number | null,
     elemRef: any
 }
 
@@ -29,20 +30,24 @@ export default function EditDrinkCard(props: EditDrinkCardProps) {
             relative
         ">
             { props.portNumber != null &&
-                <div className="flex w-full">
-                    <img 
-                        src={`./images/port-number-${props.portNumber}.svg`}
-                        className="h-[20px]"
+                <div className="relative flex h-[20px] w-[20px]">
+                    <Image 
+                        src={`/images/port-number-${props.portNumber}.svg`}
                         alt={`Port Number ${props.portNumber}`}
+                        layout="fill"
+                        objectFit="scale-down"
                     />
                 </div>
             }
             <div className="flex justify-between items-center">
-                <img
-                    src={`./images/${props.name}.svg`}
-                    className="h-[30px] w-[90px] md:w-[95px]"
-                    alt={`${props.name}`}
-                />
+                <div className="relative h-[30px] w-[90px] md:w-[95px]">
+                    <Image
+                        src={`/images/${props.name}.svg`}
+                        alt={`${props.name}`}
+                        layout="fill"
+                        objectFit="scale-down"
+                    />
+                </div>
                 <Button variant={ButtonVariant.Disable} />
             </div>
             <div className="before:content-[''] bg-[#CDCDCD] bg-opacity-30 w-full h-[2px]" />

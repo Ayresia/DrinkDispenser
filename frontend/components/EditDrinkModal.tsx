@@ -1,26 +1,18 @@
-import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef } from "react";
 import { DrinkName } from "./DrinkCard";
 import EditDrinkCard from "./EditDrinkCard";
 
 export interface EditDrinkModalProps {
     name: DrinkName,
-    portNumber: 1 | 2 | 3 | null,
+    portNumber: number | null,
     modalState: boolean,
     setModalState: Dispatch<SetStateAction<boolean>>
 }
 
+
 export default function EditDrinkModal(props: EditDrinkModalProps) {
     const modalRef = useRef<HTMLDivElement>(null)
-
-    useEffect(() => {
-        document.body.style.overflow = 'hidden'
-
-        return () => {
-            document.body.style.overflow = 'unset'
-        }
-    }, [])
-
-    useEffect(() => {
+    const checkOuterClick = useCallback((props, modalRef) => {
         if (!props.modalState) return
 
         const clickEvent = (event: MouseEvent) => {
@@ -33,7 +25,11 @@ export default function EditDrinkModal(props: EditDrinkModalProps) {
         return () => {
             window.removeEventListener("click", clickEvent)
         }
-    }, [props.modalState])
+    }, [])
+
+    useEffect(() => {
+        checkOuterClick(props, modalRef)
+    }, [props, checkOuterClick])
 
     return (
         <div className="w-full h-full fixed top-0 left-0 flex justify-center items-center">

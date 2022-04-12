@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export enum DrinkName {
     CocaCola = "coca-cola",
     Sprite = "sprite",
@@ -10,7 +12,7 @@ export enum DrinkName {
 
 export interface DrinkCardProps {
     name: DrinkName,
-    portNumber: 1 | 2 | 3 | null
+    portNumber: number | null
 }
 
 export default function DrinkCard(props: DrinkCardProps) {
@@ -35,17 +37,23 @@ export default function DrinkCard(props: DrinkCardProps) {
             relative
         ">
             { props.portNumber != null &&
-                <img 
-                    src={`./images/port-number-${props.portNumber}.svg`}
-                    className="absolute top-4 left-4 max-h-[20px]"
-                    alt={`Port ${props.portNumber} Icon`}
-                />
+                <div className="absolute top-4 left-4 h-[20px] w-[20px]">
+                    <Image
+                        src={`/images/port-number-${props.portNumber}.svg`}
+                        layout="fill"
+                        objectFit="scale-down"
+                        alt={`Port ${props.portNumber} Icon`}
+                    />
+                </div>
             }
-            <img
-                src={`./images/${props.name}.svg`}
-                className="max-h-[55px]"
-                alt={`${props.name}`}
-            />
+            <div className="relative h-[55px] w-[150px]">
+                <Image
+                    src={`/images/${props.name}.svg`}
+                    layout="fill"
+                    objectFit="scale-down"
+                    alt={`${props.name}`}
+                />
+            </div>
         </div>
     );
 }

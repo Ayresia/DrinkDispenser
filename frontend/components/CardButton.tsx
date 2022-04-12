@@ -1,4 +1,5 @@
 import { MouseEvent } from "react";
+import Image from 'next/image';
 
 export interface CardButtonProps {
     title: string,
@@ -46,11 +47,14 @@ export default function CardButton(props: CardButtonProps) {
                 `}
             />
             <div className="flex flex-col gap-3 pt-0 lg:pt-3">
-                <img 
-                    src={`./images/${props.image}.svg`}
-                    alt={props.imageAlt}
-                    className="hidden lg:block max-h-[25px]"
-                />
+                <div className="relative hidden lg:block h-[25px]">
+                    <Image
+                        src={`/images/${props.image}.svg`}
+                        layout="fill"
+                        objectFit="scale-down"
+                        alt={props.imageAlt}
+                    />
+                </div>
                 <p className="font-semibold">{props.title}</p>
             </div>
         </button>
