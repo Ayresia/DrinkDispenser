@@ -26,10 +26,10 @@ export default function Drinks() {
                 <title>DrinkDispenser - Drinks</title>
             </Head>
             <MainLayout className={openModal ? "blur-md" : ""}>
-                <main className="flex flex-col gap-[30px] p-7 sm:p-10 text-white overflow-x-hidden w-full mb-28">
+                <main className="flex flex-col gap-[30px] p-7 sm:p-10 text-white overflow-x-hidden w-full mb-28 lg:mb-0">
                     <p className="text-4xl font-bold">Drinks</p>
                     <AddDrinkButton />
-                    <div className="flex flex-wrap gap-[40px] justify-center 2xl:justify-start overflow-y-scroll">
+                    <div className="flex flex-wrap gap-[40px] justify-center 2xl:justify-start overflow-y-auto">
                         { 
                             drinks.map((drink) => {
                                 return <DrinkCard 

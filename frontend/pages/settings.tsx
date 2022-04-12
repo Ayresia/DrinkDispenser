@@ -20,11 +20,11 @@ export default function Settings() {
                 <title>DrinkDispenser - Settings</title>
             </Head>
             <MainLayout>
-                <main className="flex flex-col gap-[25px] p-7 sm:p-10 text-white overflow-x-hidden w-full mb-28">
+                <main className="flex flex-col gap-[25px] p-7 sm:p-10 text-white overflow-x-hidden w-full mb-28 lg:mb-0">
                     <p className="text-4xl font-bold">Settings</p>
                     <div>
                         <p className="text-2xl font-bold pb-5">Notifications</p>
-                        <div className="flex flex-col lg:flex-row gap-5 min-h-[127px] overflow-x-scroll">
+                        <div className="flex flex-col lg:flex-row gap-5 min-h-[127px] overflow-x-auto">
                             <CardButton 
                                 title="Notifications & Email"
                                 image="noti_email_icon"
