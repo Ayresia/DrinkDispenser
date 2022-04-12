@@ -42,7 +42,7 @@ export default function Dropdown(props: DropdownProps) {
                         />
                     </button>
                     { open &&
-                        <div ref={selectionRef} className="flex flex-col fixed translate-x-[40px] translate-y-[40px] gap-[10px] text-sm text-white border-[1px] border-[#C3C3C3] rounded-[10px] py-[3px] px-[15px] bg-[#FFFFFF] bg-opacity-20">
+                        <div ref={selectionRef} className="flex flex-col gap-[10px] text-sm text-white border-[1px] border-[#C3C3C3] rounded-[10px] py-[3px] px-[15px] bg-[#FFFFFF] bg-opacity-20">
                             { 
                                 props.options.map((option) => {
                                     return <button className="w-full text-left font-semibold">{option}</button>

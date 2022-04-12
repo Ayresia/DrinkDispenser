@@ -15,7 +15,7 @@ export default function Settings() {
 
     return (
         <MainLayout>
-            <main className="flex flex-col gap-[25px] p-7 sm:p-10 text-white overflow-x-hidden w-full">
+            <main className="flex flex-col gap-[25px] p-7 sm:p-10 text-white overflow-x-hidden w-full mb-28">
                 <p className="text-4xl font-bold">Settings</p>
                 <div>
                     <p className="text-2xl font-bold pb-5">Notifications</p>

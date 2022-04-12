@@ -17,7 +17,8 @@ export default function CardButton(props: CardButtonProps) {
             pl-5
             lg:pl-0
             rounded-[20px]
-            gap-2
+            gap-5
+            lg:gap-2
             border-[1px]
             border-[#C3C3C3]
             border-opacity-50
@@ -38,9 +39,9 @@ export default function CardButton(props: CardButtonProps) {
                 w-[12px]
                 h-[12px]
                 before:content-['']
-                ${ props.indicator && "bg-[#4CC896]" }
                 rounded-lg
-                shadow-[0_0_15px_#4CC896]
+                ${ props.indicator && "bg-[#4CC896]" }
+                ${ props.indicator && "shadow-[0_0_15px_#4CC896]" }
                 `}
             />
             <div className="flex flex-col gap-3 pt-0 lg:pt-3">

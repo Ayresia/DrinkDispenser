@@ -12,7 +12,7 @@ export default function MobileNavbar() {
     }, [])
 
     return (
-        <div className="flex lg:hidden self-center fixed bottom-20 w-fit gap-[50px] rounded-[20px] border-[1px] border-[#C3C3C3] border-opacity-50 bg-[#000000] bg-opacity-[12%] px-10 py-5 shadow-[0_12px_45px_rgba(0,0,0,0.1)]">
+        <div className="flex lg:hidden self-center fixed bottom-16 w-fit gap-[50px] rounded-[20px] border-[1px] border-[#C3C3C3] border-opacity-50 bg-[#000000] bg-opacity-[12%] px-10 py-5 shadow-[0_12px_45px_rgba(0,0,0,0.1)]">
             <SidebarButton logo={DashboardLogo} page={page} href="/" />
             <SidebarButton logo={DrinksLogo} page={page} href="/drinks" />
             <SidebarButton logo={SettingsLogo} page={page} href="/settings" />
