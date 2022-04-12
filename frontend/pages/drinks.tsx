@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 import AddDrinkButton from "../components/AddDrinkButton";
 import DrinkCard, { DrinkName } from "../components/DrinkCard";
@@ -21,6 +22,9 @@ export default function Drinks() {
 
     return (
         <>
+            <Head>
+                <title>DrinkDispenser - Drinks</title>
+            </Head>
             <MainLayout className={openModal ? "blur-md" : ""}>
                 <main className="flex flex-col gap-[30px] p-7 sm:p-10 text-white overflow-x-hidden w-full mb-28">
                     <p className="text-4xl font-bold">Drinks</p>
