@@ -19,9 +19,9 @@ export default function Sidebar() {
                 height={200}
                 width={200}
             />
-            <SidebarButton name="Dashboard" logo={DashboardLogo} page={page} href="/" />
-            <SidebarButton name="Drinks" logo={DrinksLogo} page={page} href="/drinks" />
-            <SidebarButton name="Settings" logo={SettingsLogo} page={page} href="/settings" />
+            <SidebarButton name="Dashboard" logo={DashboardLogo} logoAlt="Dashboard" page={page} href="/" />
+            <SidebarButton name="Drinks" logo={DrinksLogo} logoAlt="Drinks" page={page} href="/drinks" />
+            <SidebarButton name="Settings" logo={SettingsLogo} logoAlt="Settings" page={page} href="/settings" />
         </aside>
     );
 }

@@ -4,6 +4,7 @@ export interface CardButtonProps {
     title: string,
     indicator?: boolean,
     image: string,
+    imageAlt: string,
     onClick?: (event: MouseEvent<HTMLButtonElement>) => void
 }
 
@@ -45,7 +46,11 @@ export default function CardButton(props: CardButtonProps) {
                 `}
             />
             <div className="flex flex-col gap-3 pt-0 lg:pt-3">
-                <img src={`./images/${props.image}.svg`} className="hidden lg:block max-h-[25px]" />
+                <img 
+                    src={`./images/${props.image}.svg`}
+                    alt={props.imageAlt}
+                    className="hidden lg:block max-h-[25px]"
+                />
                 <p className="font-semibold">{props.title}</p>
             </div>
         </button>

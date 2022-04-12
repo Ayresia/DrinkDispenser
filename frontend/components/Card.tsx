@@ -1,6 +1,7 @@
 export interface CardProps {
     title?: string,
     image?: string
+    imageAlt?: string
     value?: string 
 }
 
@@ -24,7 +25,7 @@ export default function Card(props: CardProps) {
             min-w-[225px]
         ">
             { props.title && <p className="font-semibold lg:text-lg">{props.title}</p> }
-            { props.image && <img src={`./images/${props.image}.svg`} className="max-h-[30px]" /> }
+            { props.image && <img src={`./images/${props.image}.svg`} alt={props.imageAlt} className="max-h-[30px]" /> }
             { props.value && <p className="font-extrabold text-xl lg:text-3xl">{props.value}</p> }
         </div>
     );

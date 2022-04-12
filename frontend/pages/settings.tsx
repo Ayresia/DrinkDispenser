@@ -23,18 +23,21 @@ export default function Settings() {
                         <CardButton 
                             title="Notifications & Email"
                             image="noti_email_icon"
+                            imageAlt="Notifications & Email Icon"
                             onClick={() => setNotificationType(NotificationType.BOTH)} 
                             indicator={notificationType === NotificationType.BOTH}
                         />
                         <CardButton
                             title="Email"
                             image="email"
+                            imageAlt="Email Icon"
                             onClick={() => setNotificationType(NotificationType.EMAIL)}
                             indicator={notificationType === NotificationType.EMAIL}
                         />
                         <CardButton
                             title="Notifications"
                             image="notifications"
+                            imageAlt="Notifications Icon"
                             onClick={() => setNotificationType(NotificationType.PUSH_NOTIFICATIONS)} 
                             indicator={notificationType === NotificationType.PUSH_NOTIFICATIONS}
                         />

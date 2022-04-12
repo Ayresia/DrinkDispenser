@@ -38,7 +38,7 @@ export default function DrinkCard(props: DrinkCardProps) {
                 <img 
                     src={`./images/port-number-${props.portNumber}.svg`}
                     className="absolute top-4 left-4 max-h-[20px]"
-                    alt={`Port Number ${props.portNumber}`}
+                    alt={`Port ${props.portNumber} Icon`}
                 />
             }
             <img
