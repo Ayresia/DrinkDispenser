@@ -33,3 +33,6 @@ frontend/.vercel
 
 # typescript
 frontend/*.tsbuildinfo
+
+# python cache
+backend/__pycache__
