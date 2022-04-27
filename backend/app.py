@@ -1,19 +1,15 @@
-from databases import Database
 from starlette.applications import Starlette
-from starlette.responses import JSONResponse
 from starlette.routing import Route
-from db import Base
-from db.models import *
+from db import Base, database
 
-DATABASE_URL = 'sqlite:///database.db'
-database = Database(DATABASE_URL)
-
-async def health(request):
-    return JSONResponse({'healthy': True})
+import endpoints
 
 app = Starlette(
     debug=True,
-    routes=[ Route('/health', health)],
+    routes=[ 
+        Route('/health', endpoints.health),
+        Route('/edit', endpoint=endpoints.edit, methods=['POST'])
+    ],
     on_startup=[database.connect],
     on_shutdown=[database.disconnect]
 )

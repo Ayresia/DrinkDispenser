@@ -35,4 +35,10 @@ frontend/.vercel
 frontend/*.tsbuildinfo
 
 # python cache
-backend/__pycache__
+__pycache__/
+
+# sqlite database
+backend/database.db
+
+# python venv
+backend/.venv
