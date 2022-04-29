@@ -8,7 +8,8 @@ app = Starlette(
     debug=True,
     routes=[ 
         Route('/health', endpoints.health),
-        Route('/edit', endpoint=endpoints.edit, methods=['POST'])
+        Route('/drink/edit', endpoint=endpoints.drinkEdit, methods=['POST']),
+        Route('/settings/edit', endpoint=endpoints.settingsEdit, methods=['POST'])
     ],
     on_startup=[database.connect],
     on_shutdown=[database.disconnect]
