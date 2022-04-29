@@ -6,15 +6,15 @@ from . import models, database
 async def edit(request: Request):
     data = await request.json()
 
-    id: int = data.get('id')
-    active: bool = data.get('active')
-    portNumber: int = data.get('portNumber')
+    id: int = data.get("id")
+    active: bool = data.get("active")
+    portNumber: int = data.get("portNumber")
 
     if id is None:
-        return JSONResponse({ 'error': 'Drink id is required' })
+        return JSONResponse({"error": "Drink id is required"})
 
     if active is None and portNumber is None:
-        return JSONResponse({ 'error': 'You must provide either active or portNumber property' })
+        return JSONResponse({"error": "You must provide either active or portNumber property"})
 
     drinkTable: Table = models.Drink.__table__
 
@@ -22,12 +22,20 @@ async def edit(request: Request):
     row = await database.fetch_one(query)
 
     if row is None:
-        return JSONResponse({ 'error': 'Invalid drink id' })
+        return JSONResponse({"error": "Invalid drink id"})
+
+    values = {}
 
     if portNumber is not None and portNumber < 1 or portNumber > 3:
-        return JSONResponse({ 'error': 'Port number must be between 1 to 3' })
+        if portNumber < 1 or portNumber > 3:
+            return JSONResponse({"error": "Port number must be between 1 to 3" })
 
-    query = drinkTable.update().where(models.Drink.id == id).values(active = active, port_number = portNumber)
+        values.update({"port_number": portNumber})
+
+    if active is not None:
+        values.update({"active": active})
+        
+    query = drinkTable.update().where(models.Drink.id == id).values(values)
     await database.execute(query)
 
-    return JSONResponse({ 'result': True })
+    return JSONResponse({"result": True })

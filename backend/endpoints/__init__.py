@@ -1,11 +1,9 @@
 from db import models, database
 from util import parseNotificationType
+from . import drink, settings
 from starlette.responses import JSONResponse
 from starlette.requests import Request
 from starlette.routing import Route
-
-import drink, settings
-
 
 async def health(request: Request):
     return JSONResponse({'healthy': True})
