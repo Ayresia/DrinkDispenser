@@ -5,6 +5,17 @@ from . import models, database, parseNotificationType
 
 import re
 
+settingsTable: Table = models.Setting.__table__
+
+async def fetchAll(request: Request):
+    stmt = settingsTable.select()
+    row = await database.fetch_one(stmt)
+
+    serializedRow = row._asdict()
+    serializedRow.pop("id")
+
+    return JSONResponse(serializedRow)
+
 async def edit(request: Request):
     data = await request.json()
 
@@ -15,7 +26,6 @@ async def edit(request: Request):
     if notificationType is None and email is None and apiToken is None:
         return JSONResponse({"error": "You must provide either notificationType, email or apiToken property"})
 
-    settingsTable: Table = models.Setting.__table__
     values = {}
 
     if notificationType is not None:
@@ -42,3 +52,4 @@ async def edit(request: Request):
     await database.execute(updateStmt)
 
     return JSONResponse({"result": True})
+

@@ -10,6 +10,8 @@ async def health(request: Request):
 
 routes = [
     Route('/health', endpoint=health),
+    Route('/drinks', endpoint=drink.fetchAll),
     Route('/drink/edit', endpoint=drink.edit, methods=['POST']),
+    Route('/settings', endpoint=settings.fetchAll),
     Route('/settings/edit', endpoint=settings.edit, methods=['POST'])
 ]

@@ -3,6 +3,15 @@ from starlette.requests import Request
 from sqlalchemy.schema import Table
 from . import models, database
 
+drinkTable: Table = models.Drink.__table__
+
+async def fetchAll(request: Request):
+    stmt = drinkTable.select()
+    rows = await database.fetch_all(stmt)
+    serializedResult = [row._asdict() for row in rows]
+
+    return JSONResponse(serializedResult)
+
 async def edit(request: Request):
     data = await request.json()
 
@@ -16,7 +25,6 @@ async def edit(request: Request):
     if active is None and portNumber is None:
         return JSONResponse({"error": "You must provide either active or portNumber property"})
 
-    drinkTable: Table = models.Drink.__table__
 
     query = drinkTable.select().where(models.Drink.id == id)
     row = await database.fetch_one(query)
