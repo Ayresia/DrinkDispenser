@@ -25,7 +25,6 @@ async def edit(request: Request):
     if active is None and portNumber is None:
         return JSONResponse({"error": "You must provide either active or portNumber property"})
 
-
     query = drinkTable.select().where(models.Drink.id == id)
     row = await database.fetch_one(query)
 
