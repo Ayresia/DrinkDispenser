@@ -1,4 +1,4 @@
-import { NotificationType } from "./pages/settings"
+import { NotificationType } from "./lib/api"
 
 export function parseDrinkName(drinkName: string) {
     switch (drinkName) {
