@@ -1,5 +1,5 @@
 from db import models, database
-from util import parseNotificationType, getSumTable, getActiveDrinks, getTopFiveDrinks
+from util import getSumTable, getActiveDrinks, getTopFiveDrinks
 from . import drink, settings
 from starlette.responses import JSONResponse
 from starlette.requests import Request
@@ -14,7 +14,7 @@ async def overview(request: Request):
 
     drinkTable: Table = models.Drink.__table__
 
-    drinksStmt = drinkTable.select().order_by(models.Drink.total_dispensed.desc())
+    drinksStmt = drinkTable.select().order_by(models.Drink.totalDispensed.desc())
     drinks = await database.fetch_all(drinksStmt)
 
     totalDrinksDispensed = getSumTable(drinks)

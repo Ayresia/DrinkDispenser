@@ -4,12 +4,14 @@ export enum ButtonVariant {
 }
 
 export interface ButtonProps {
-    variant: ButtonVariant
+    variant: ButtonVariant,
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void, 
+    children?: any
 }
 
 export default function Button(props: ButtonProps) {
     return (
-        <button className={`
+        <button onClick={props.onClick} className={`
             ${ props.variant === ButtonVariant.Disable ?
                 "bg-[#FF453A]" : "bg-[#82FF63]"
             }
@@ -20,17 +22,21 @@ export default function Button(props: ButtonProps) {
             ${ props.variant === ButtonVariant.Disable ?
                 "text-[#FF6C63]" : "text-[#82FF63]"
             }
+            h-fit
             w-fit
             bg-opacity-20
             border-[1px]
             border-opacity-40
-            px-4
-            py-[2px]
+            px-6
+            py-[4px]
+            lg:px-4
+            lg:py-[2px]
             rounded-[10px]
             font-bold
         `}>
-            { props.variant === ButtonVariant.Disable ?
-                "Disable" : "Confirm"
+            { props.children !== undefined ? 
+                props.children :
+                props.variant === ButtonVariant.Disable ? "Disable" : "Confirm" 
             }
         </button>
     );

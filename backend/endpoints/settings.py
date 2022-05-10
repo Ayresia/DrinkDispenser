@@ -1,7 +1,7 @@
 from starlette.responses import JSONResponse
 from starlette.requests import Request
 from sqlalchemy.schema import Table
-from . import models, database, parseNotificationType
+from . import models, database
 
 import re
 
@@ -29,13 +29,10 @@ async def edit(request: Request):
     values = {}
 
     if notificationType is not None:
-        if notificationType not in ["noti-email", "email", "noti"]:
+        if notificationType not in [1, 2, 3]:
             return JSONResponse({"error": "Invalid notification type"})
 
-        values.update({"notification_type": parseNotificationType(notificationType)})
-
-    if email is None and apiToken is None:
-        return JSONResponse({"error": "You must provide either email or apiToken property"})
+        values.update({"notificationType": notificationType})
 
     if email is not None:
         regex = re.compile(r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+")
@@ -43,10 +40,10 @@ async def edit(request: Request):
         if not re.fullmatch(regex, email):
             return JSONResponse({"error": "Invalid email format"})
 
-        values.update({"email_address": email})
+        values.update({"email": email})
 
     if apiToken is not None:
-        values.update({"api_token": apiToken})
+        values.update({"apiToken": apiToken})
 
     updateStmt = settingsTable.update().values(values)
     await database.execute(updateStmt)

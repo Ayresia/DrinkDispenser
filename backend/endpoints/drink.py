@@ -1,3 +1,4 @@
+from sqlalchemy.sql.elements import and_
 from starlette.responses import JSONResponse
 from starlette.requests import Request
 from sqlalchemy.schema import Table
@@ -17,7 +18,7 @@ async def edit(request: Request):
 
     id: int = data.get("id")
     active: bool = data.get("active")
-    portNumber: int = data.get("portNumber")
+    portNumber = data.get("portNumber")
 
     if id is None:
         return JSONResponse({"error": "Drink id is required"})
@@ -33,16 +34,29 @@ async def edit(request: Request):
 
     values = {}
 
-    if portNumber is not None and portNumber < 1 or portNumber > 3:
-        if portNumber < 1 or portNumber > 3:
-            return JSONResponse({"error": "Port number must be between 1 to 3" })
+    if "portNumber" in data:
+        if portNumber is not None:
+            if portNumber < 1 or portNumber > 3:
+                return JSONResponse({"error": "Port number must be between 1 to 3" })
 
-        values.update({"port_number": portNumber})
+        values.update({"portNumber": portNumber})
 
     if active is not None:
         values.update({"active": active})
-        
+
     query = drinkTable.update().where(models.Drink.id == id).values(values)
     await database.execute(query)
+
+    if active or row.active:
+        if portNumber is None: portNumber = row.portNumber
+
+        stmtUpdate = drinkTable.update().where(
+            and_(
+                models.Drink.id != id, 
+                models.Drink.portNumber == portNumber,
+                models.Drink.active == True
+            )).values({"active": False})
+
+        await database.execute(stmtUpdate)
 
     return JSONResponse({"result": True })

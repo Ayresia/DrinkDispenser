@@ -1,6 +1,6 @@
 export interface ChartEntryProps {
     name: string,
-    value: number
+    value?: number
 }
 
 export default function ChartEntry(props: ChartEntryProps) {

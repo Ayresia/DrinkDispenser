@@ -22,8 +22,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=30), nullable=False),
     sa.Column('active', sa.Boolean(), nullable=False),
-    sa.Column('port_number', sa.Integer(), nullable=True),
-    sa.Column('total_dispensed', sa.Integer(), nullable=False),
+    sa.Column('portNumber', sa.Integer(), nullable=True),
+    sa.Column('totalDispensed', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
@@ -34,19 +34,17 @@ def upgrade():
     )
     op.create_table('settings',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('email_address', sa.String(length=255), nullable=True),
-    sa.Column('api_token', sa.String(length=255), nullable=True),
-    sa.Column('notification_type', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['notification_type'], ['notification_types.id'], ),
+    sa.Column('email', sa.String(length=255), nullable=True),
+    sa.Column('apiToken', sa.String(length=255), nullable=True),
+    sa.Column('notificationType', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['notificationType'], ['notification_types.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 
     from db import models
 
-    drink_names = [
-        'coca-cola',
-        'sprite',
+    drink_names = [ 'coca-cola', 'sprite',
         'kinnie',
         'fanta',
         'mountain-dew',
@@ -59,7 +57,7 @@ def upgrade():
             {
                 'name': val,
                 'active': False,
-                'total_dispensed': 0
+                'totalDispensed': 0
             }
         ], multiinsert=False)
 
@@ -72,7 +70,7 @@ def upgrade():
 
     op.bulk_insert(models.Setting.__table__, [
         {
-            'notification_type': 1
+            'notificationType': 1
         }, 
     ], multiinsert=False)
 

@@ -12,7 +12,6 @@ body {
     background: url('/images/bg.png');
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
-    backdrop-filter: blur(100px);
 }
 
 html, body, #__next {

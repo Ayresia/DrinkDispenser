@@ -1,23 +1,22 @@
 import Head from "next/head";
-import { useState } from "react";
-import AddDrinkButton from "../components/AddDrinkButton";
-import DrinkCard, { DrinkName } from "../components/DrinkCard";
+import { useEffect, useState } from "react";
+import DrinkCard from "../components/DrinkCard";
 import EditDrinkModal from "../components/EditDrinkModal";
+import LoadingSpinner from "../components/LoadingSpinner";
 import MainLayout from "../components/MainLayout";
 import MobileNavbar from "../components/MobileNavbar";
+import { Drink, getRequest } from "../lib/api";
 
 export default function Drinks() {
-    let drinks = [
-        { type: DrinkName.CocaCola, portNumber: 1 },
-        { type: DrinkName.Sprite, portNumber: 2 },
-        { type: DrinkName.Kinnie, portNumber: 3 },
-        { type: DrinkName.Fanta, portNumber: null },
-        { type: DrinkName.MountainDew, portNumber: null },
-        { type: DrinkName.SevenUp, portNumber: null },
-        { type: DrinkName.Pepsi, portNumber: null },
-    ]
+    const [data, setData] = useState<Drink[]>()
+    const [selectedDrinkIndex, setSelectedDrinkIndex] = useState<number>(0)
+    const [openModal, setOpenModal] = useState<boolean>(false)
 
-    const [openModal, setOpenModal] = useState(false)
+    useEffect(() => {
+        getRequest<Drink[]>("/drinks")
+            .then((data: Drink[]) => setData(data))
+            .catch(_ => {})
+    }, [])
 
     return (
         <>
@@ -25,27 +24,39 @@ export default function Drinks() {
                 <title>DrinkDispenser - Drinks</title>
             </Head>
             <MainLayout className={openModal ? "blur-md" : ""}>
-                <main className="flex flex-col gap-[30px] p-7 sm:p-10 text-white overflow-x-hidden w-full mb-28 lg:mb-0">
-                    <p className="text-4xl font-bold">Drinks</p>
-                    <AddDrinkButton />
-                    <div className="flex flex-wrap gap-[40px] justify-center 2xl:justify-start overflow-y-auto">
-                        { 
-                            drinks.map((drink) => {
-                                return <DrinkCard 
-                                    name={drink.type} 
-                                    portNumber={drink.portNumber}
-                                    key={drink.type}
-                                />
-                            })
-                        }
+                { !data && 
+                    <div className="flex justify-center items-center h-full w-full">
+                        <LoadingSpinner />
+                        <MobileNavbar />
                     </div>
-                    <MobileNavbar />
-                </main>
+                }
+                { data &&
+                    <main className="flex flex-col gap-[30px] p-7 sm:p-10 text-white overflow-x-hidden w-full mb-28 lg:mb-0">
+                        <p className="text-4xl font-bold">Drinks</p>
+                        <div className="flex flex-wrap gap-[40px] justify-center 2xl:justify-start overflow-y-auto">
+                            { 
+                                data.map((drink) => {
+                                    return <DrinkCard 
+                                        name={drink.name} 
+                                        portNumber={drink.portNumber}
+                                        active={drink.active}
+                                        key={drink.id}
+                                        onClick={() => {
+                                            setOpenModal(true)
+                                            setSelectedDrinkIndex(drink.id - 1)
+                                        }}
+                                    />
+                                })
+                            }
+                        </div>
+                        <MobileNavbar />
+                    </main>
+                }
             </MainLayout>
-            { openModal &&
+            { (data && openModal) &&
                 <EditDrinkModal 
-                    name={drinks[0].type}
-                    portNumber={drinks[0].portNumber}
+                    drink={data[selectedDrinkIndex]}
+                    drinks={data}
                     modalState={openModal}
                     setModalState={setOpenModal}
                 />

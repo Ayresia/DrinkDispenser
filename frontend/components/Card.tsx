@@ -37,9 +37,7 @@ export default function Card(props: CardProps) {
                 />
             }
             { props.value && 
-                <p 
-                    className="font-extrabold text-xl lg:text-3xl"
-                >
+                <p className="font-extrabold text-xl lg:text-3xl">
                     {props.value}
                 </p>
             }

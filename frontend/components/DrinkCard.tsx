@@ -1,23 +1,15 @@
 import Image from 'next/image'
 
-export enum DrinkName {
-    CocaCola = "coca-cola",
-    Sprite = "sprite",
-    Kinnie = "kinnie",
-    Fanta = "fanta",
-    MountainDew = "mountain-dew",
-    SevenUp = "7up",
-    Pepsi = "pepsi"
-}
-
 export interface DrinkCardProps {
-    name: DrinkName,
-    portNumber: number | null
+    name: string,
+    portNumber: number | undefined,
+    active: boolean,
+    onClick: () => void
 }
 
 export default function DrinkCard(props: DrinkCardProps) {
     return (
-        <div className="
+        <div onClick={props.onClick} className="
             flex
             flex-col
             items-center
@@ -35,15 +27,18 @@ export default function DrinkCard(props: DrinkCardProps) {
             min-w-full
             lg:min-w-[342px]
             relative
+            cursor-pointer
         ">
             { props.portNumber != null &&
                 <div className="absolute top-4 left-4 h-[20px] w-[20px]">
-                    <Image
-                        src={`/images/port-number-${props.portNumber}.svg`}
-                        layout="fill"
-                        objectFit="scale-down"
-                        alt={`Port ${props.portNumber} Icon`}
-                    />
+                    { props.active &&
+                        <Image
+                            src={`/images/port-number-${props.portNumber}.svg`}
+                            layout="fill"
+                            objectFit="scale-down"
+                            alt={`Port ${props.portNumber} Icon`}
+                        />
+                    }
                 </div>
             }
             <div className="relative h-[55px] w-[150px]">

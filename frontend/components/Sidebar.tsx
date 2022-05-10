@@ -13,7 +13,7 @@ export default function Sidebar() {
     }, [])
 
     return (
-        <aside className="overflow-auto hidden lg:flex flex-col w-fit gap-10 border-r-2 border-r-white border-opacity-[11%] p-10 h-full shadow-[0_0_45px_5px_rgba(0,0,0,0.2)]">
+        <aside className="overflow-auto rounded-tl-[20px] hidden lg:flex flex-col w-fit gap-10 border-r-2 border-r-white border-opacity-[11%] p-10 h-full shadow-[0_0_45px_5px_rgba(0,0,0,0.2)]">
             <Image
                 src="/images/logo.svg"
                 alt="Drink Dispenser Logo"
