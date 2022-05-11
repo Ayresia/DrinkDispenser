@@ -1,4 +1,5 @@
 from db import models, database
+from config import config
 from util import getSumTable, getActiveDrinks, getTopFiveDrinks
 from . import drink, settings
 from starlette.responses import JSONResponse

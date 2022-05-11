@@ -1,20 +1,15 @@
 from starlette.responses import JSONResponse
 from starlette.requests import Request
 from sqlalchemy.schema import Table
-from . import models, database
+from . import models, database, config
 
 import re
 
 settingsTable: Table = models.Setting.__table__
 
 async def fetchAll(request: Request):
-    stmt = settingsTable.select()
-    row = await database.fetch_one(stmt)
-
-    serializedRow = row._asdict()
-    serializedRow.pop("id")
-
-    return JSONResponse(serializedRow)
+    result = config.pop('isDispensed')
+    return JSONResponse(result)
 
 async def edit(request: Request):
     data = await request.json()
@@ -48,5 +43,7 @@ async def edit(request: Request):
     updateStmt = settingsTable.update().values(values)
     await database.execute(updateStmt)
 
-    return JSONResponse({"result": True})
+    for key, value in values.items():
+        if key in config: config[key] = value
 
+    return JSONResponse({"result": True})
