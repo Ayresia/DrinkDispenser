@@ -3,6 +3,7 @@ from RPi.GPIO import BOARD as gpioBoard
 from .lcd import displayDrinkNotExist, displayDrinkDispensed, lcdInstance as lcd
 from . import config
 from util import parseDrinkName
+from services import sendNotification
 
 import time
 
@@ -40,6 +41,11 @@ def _onKeyPressed(key):
         if buffer[2] == str(portNumber) and buffer[:2] == "00":
             displayDrinkDispensed(parseDrinkName(name))
             config["isDispensed"] = True
+            sendNotification(
+                f"Drink Dispensed - {parseDrinkName(name)}",
+                f"{parseDrinkName(name)} is being dispensed at the moment.",
+                "DRINK_DISPENSED"
+            )
 
             # TODO: add pump logic
             time.sleep(30) # TODO: adjust dispense interval

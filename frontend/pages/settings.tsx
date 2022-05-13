@@ -90,7 +90,7 @@ export default function Settings() {
                         { (notificationType === NotificationType.PUSH_NOTIFICATIONS || notificationType == NotificationType.BOTH) &&
                             <SettingsInput
                                 title="API Token"
-                                description="Receive near real-time push notifications, <>'s API which sends a notification whenever a drink has run out of liquid."
+                                description="Receive near real-time push notifications, Simplepush's API which sends a notification whenever a drink is being dispensed."
                                 setValue={setApiToken}
                                 value={apiToken}
                             />
