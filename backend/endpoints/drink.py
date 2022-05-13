@@ -2,7 +2,8 @@ from sqlalchemy.sql.elements import and_
 from starlette.responses import JSONResponse
 from starlette.requests import Request
 from sqlalchemy.schema import Table
-from . import models, database
+from . import models, database, config
+from util import getActiveDrinks
 
 drinkTable: Table = models.Drink.__table__
 
@@ -58,5 +59,9 @@ async def edit(request: Request):
             )).values({"active": False})
 
         await database.execute(stmtUpdate)
+
+        drinksStmt = drinkTable.select().where(models.Drink.active == True)
+        drinks = await database.fetch_all(drinksStmt)
+        config["activeDrinks"] = getActiveDrinks(drinks)
 
     return JSONResponse({"result": True })

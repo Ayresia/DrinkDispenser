@@ -8,8 +8,7 @@ import re
 settingsTable: Table = models.Setting.__table__
 
 async def fetchAll(request: Request):
-    result = config.pop('isDispensed')
-    return JSONResponse(result)
+    return JSONResponse(config)
 
 async def edit(request: Request):
     data = await request.json()
