@@ -18,13 +18,13 @@ async def edit(request: Request):
     apiToken = data.get("apiToken")
 
     if notificationType is None and email is None and apiToken is None:
-        return JSONResponse({"error": "You must provide either notificationType, email or apiToken property"})
+        return JSONResponse({"error": "You must provide either notificationType, email or apiToken property"}, status_code=400)
 
     values = {}
 
     if notificationType is not None:
         if notificationType not in [1, 2, 3]:
-            return JSONResponse({"error": "Invalid notification type"})
+            return JSONResponse({"error": "Invalid notification type"}, status_code=400)
 
         values.update({"notificationType": notificationType})
 
@@ -32,7 +32,7 @@ async def edit(request: Request):
         regex = re.compile(r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+")
 
         if not re.fullmatch(regex, email):
-            return JSONResponse({"error": "Invalid email format"})
+            return JSONResponse({"error": "Invalid email format"}, status_code=400)
 
         values.update({"email": email})
 
