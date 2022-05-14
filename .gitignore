@@ -42,3 +42,7 @@ backend/database.db
 
 # python venv
 backend/.venv
+
+# gmail credentials/tokens
+backend/credentials.json
+backend/token.json
