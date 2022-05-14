@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+    frontend:
+        container_name: drinkdispenser_frontend
+        ports: 
+          - "8080:3000"
+        depends_on:
+            backend:
+                condition: service_healthy
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+    backend:
+        container_name: drinkdispenser_backend
+        ports: 
+          - "8000:8000"
+        build:
+            context: ./backend
+            dockerfile: Dockerfile

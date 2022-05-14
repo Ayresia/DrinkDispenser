@@ -15,7 +15,6 @@ google-auth==2.6.6
 google-auth-httplib2==0.1.0
 google-auth-oauthlib==0.5.1
 googleapis-common-protos==1.56.1
-grapejuice==5.1.1
 greenlet==1.1.2
 h11==0.13.0
 httplib2==0.20.4
