@@ -14,8 +14,6 @@ settingsTable: Table = models.Setting.__table__
 drinkTable: Table = models.Drink.__table__
 
 async def fetch():
-    global email, apiToken, notificationType
-
     stmt = settingsTable.select()
     row = await database.fetch_one(stmt)
 

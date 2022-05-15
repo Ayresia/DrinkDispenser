@@ -1,6 +1,6 @@
 from pad4pi import rpi_gpio
 from RPi.GPIO import BOARD as gpioBoard
-from .lcd import displayDrinkNotExist, displayDrinkDispensed, lcdInstance as lcd
+from .lcd import displayDrinkNotExist, displayDrinkDispensed, displayAllDrinks, displayMainMenu, lcdInstance as lcd
 from . import config
 from util import parseDrinkName
 from services import sendNotification
@@ -23,10 +23,14 @@ def _onKeyPressed(key):
 
     if config["isDispensed"]: return
 
-    if key == "*" and len(buffer) != 0:
-        buffer = ""
-    else:
-        buffer += key
+    match key:
+        case "*": 
+            if len(buffer) == 0:
+                buffer = ""
+        case "#": 
+            displayAllDrinks()
+            return
+        case _: buffer += key
 
     if len(buffer) != 3:
         lcd.print_line(buffer, line=1, align="CENTER")
@@ -58,8 +62,7 @@ def _onKeyPressed(key):
     else:
         config["isDispensed"] = False
 
-    lcd.clear()
-    lcd.print_line("DrinkDispenser", line=0, align='CENTER')
+    displayMainMenu()
             
 def setup():
     factory = rpi_gpio.KeypadFactory()
