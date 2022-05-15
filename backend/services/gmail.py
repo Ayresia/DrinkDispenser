@@ -42,7 +42,7 @@ class Client:
                     token.write(self.creds.to_json())
 
     def sendEmail(self, email, subject, rawMessage):
-        if not self.creds:
+        if not self.creds or not email:
             return
 
         message = MIMEText(rawMessage)

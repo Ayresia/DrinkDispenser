@@ -5,5 +5,5 @@ import simplepush
 def send_notification(title, message, event):
     apiToken = config["apiToken"]
 
-    if len(apiToken) != 0:
+    if apiToken:
         simplepush.send(config["apiToken"], title, message, event)
