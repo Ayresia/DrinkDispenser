@@ -52,7 +52,7 @@ def _onKeyPressed(key):
                 "DRINK_DISPENSED"
             )
 
-            pump.dispense(buffer[2], 2)
+            pump.dispense(int(buffer[2]), 2)
 
     buffer = ""
 
