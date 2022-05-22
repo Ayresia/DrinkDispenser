@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-pins = [29, 31, 37]
+pins = [38, 31, 37]
 
 def dispense(port, secs):
     chosenPort = pins[port - 1]
