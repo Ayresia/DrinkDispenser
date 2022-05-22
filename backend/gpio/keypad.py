@@ -1,3 +1,4 @@
+from gpio import pump
 from pad4pi import rpi_gpio
 from RPi.GPIO import BOARD as gpioBoard
 from .lcd import displayDrinkNotExist, displayDrinkDispensed, displayAllDrinks, displayMainMenu, lcdInstance as lcd
@@ -25,7 +26,7 @@ def _onKeyPressed(key):
 
     match key:
         case "*": 
-            if len(buffer) == 0:
+            if len(buffer) > 0:
                 buffer = ""
         case "#": 
             displayAllDrinks()
@@ -51,8 +52,7 @@ def _onKeyPressed(key):
                 "DRINK_DISPENSED"
             )
 
-            # TODO: add pump logic
-            time.sleep(30) # TODO: adjust dispense interval
+            pump.dispense(buffer[2], 2)
 
     buffer = ""
 
