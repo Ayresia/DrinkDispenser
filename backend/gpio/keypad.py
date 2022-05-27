@@ -6,6 +6,7 @@ from . import config
 from util import parseDrinkName
 from services import sendNotification
 
+import asyncio
 import time
 
 layout = [
@@ -44,15 +45,17 @@ def _onKeyPressed(key):
         portNumber = drink["portNumber"]
 
         if buffer[2] == str(portNumber) and buffer[:2] == "00":
-            displayDrinkDispensed(parseDrinkName(name))
+            parsedDrinkname = parseDrinkName(name)
+            displayDrinkDispensed(parsedDrinkname)
             config["isDispensed"] = True
+
             sendNotification(
                 f"Drink Dispensed - {parseDrinkName(name)}",
-                f"{parseDrinkName(name)} is being dispensed at the moment.",
+                f"{parsedDrinkname} is being dispensed at the moment.",
                 "DRINK_DISPENSED"
             )
 
-            pump.dispense(int(buffer[2]), 2)
+            asyncio.run(pump.dispense(int(buffer[2]), name, 10))
 
     buffer = ""
 
