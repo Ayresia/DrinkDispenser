@@ -98,7 +98,7 @@ export default function Settings() {
                         { (notificationType === NotificationType.EMAIL || notificationType == NotificationType.BOTH) &&
                             <SettingsInput
                                 title="Email Address"
-                                description="Receive near real-time email notifications, including day-to-day analytics and whenever a drink has run out of liquid."
+                                description="Receive near real-time email notifications, whenever a drink has run out of liquid."
                                 setValue={setEmail}
                                 value={email}
                             />
